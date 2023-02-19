@@ -1,77 +1,41 @@
 package ru.otus.homework.month1.hw6;
 
-
 import java.util.Scanner;
+
 public class Tester {
     public static void main(String[] args) {
 
         //объявляю переменные
-        final int NUMBER_OF_QUESTIONS = 3; //количество вопросов в тесте, необходимо для вывода правильности ответа после каждого вопроса
-        int counter = 0; //счетчик количества верных ответов, по умолчанию 0
-        int percent; //процент верных ответов от общего количества, вывожу в конце теста, намеренно int, чтобы отбросить числа после запятой
-        char questionOneAnswer; //пользовательский ввод на первый вопрос теста
-        char questionTwoAnswer; //пользовательский ввод на второй вопрос теста
-        char questionThreeAnswer; //пользовательский ввод на третий вопрос теста
+        final int NUMBER_OF_QUESTIONS = 3; //Количество вопросов в тесте
+        int percentAnswer; //процент верных ответов от общего количества, вывожу в конце теста, намеренно int, чтобы отбросить числа после запятой
+        int counterAnswer = 0; //счетчик количества верных ответов, по умолчанию 0
+        int questionAnswer; //пользовательский ввод
 
-        //Вопрос 1
+        //объявляю массивы
+        int[] correctAnswers = {1, 2, 3};
+        String[] questions = {"Каков радиус земли? Введите номер верного ответа:", "Сколько спутников у Земли? Введите номер верного ответа:", "Какая по счету планета Земля от солнца? Введите номер верного ответа:"};
+        String[] answerOptions = {"1) 6371км 2) 3353км 3) 42970км", "1) Три 2) Один 3) Шесть", "1) Вторая 2) Четвертая 3) Третья"};
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Какова скорость света? Введите номер верного ответа:");
-        System.out.println("1 - ~274 тыс. км/сек");
-        System.out.println("2 - ~299 тыс. км/сек");
-        System.out.println("3 - ~213 тыс. км/сек");
-        questionOneAnswer = scanner.next().charAt(0);
-        switch (questionOneAnswer){
-            case '1', '3':
-                counter = counter + 0;
-                System.out.println("Неправильно, в действительности ~299 тыс. км/сек.");
-                break;
-            case '2':
-                counter = counter + 1;
-                System.out.println("Правильно");
-                break;
-            default:
-                System.out.println("Неверный ввод");
-        }
 
-        //Вопрос 2
-        System.out.println("На какое расстояние отдалился самый далекий рукотворный объект человека от земли? Введите номер верного ответа:");
-        System.out.println("1 - ~155 а.е.");
-        System.out.println("2 - ~0,064 светового года");
-        System.out.println("3 - ~458 млн. км.");
-        questionTwoAnswer = scanner.next().charAt(0);
-        switch (questionTwoAnswer){
-            case '1':
-                counter = counter + 1;
-                System.out.println("Правильно");
-                break;
-            case '2','3':
-                counter = counter + 0;
-                System.out.println("Неправильно, в действительности ~155 а.е., или 23 187 669 958.5 км. от земли, Вояджер 1");
-                break;
-            default:
-                System.out.println("Неверный ввод");
-        }
+        for (int i = 0; i < questions.length; i++) {
+            System.out.println(questions[i]);
+            System.out.println(answerOptions[i]);
 
-        //Вопрос 3
-        System.out.println("На каком расстоянии находится самый далекий наблюдаемый объект вселенной? Введите номер верного ответа:");
-        System.out.println("1 - ~13,5 млрд. световых лет");
-        System.out.println("2 - ~350,9 млн парсек");
-        System.out.println("3 - ~458 643 a.e.");
-        questionThreeAnswer = scanner.next().charAt(0);
-        switch (questionThreeAnswer){
-            case '1':
-                counter = counter + 1;
-                break;
-            case '2','3':
-                counter = counter + 0;
-                System.out.println("Неправильно, в действительности  мы можем наблюдать лишь сферу радиусом ~13,5 млрд. световых лет от земли, ввиду ограничения распостранения скорости света.");
-                break;
-            default:
+            questionAnswer = scanner.nextInt();
+
+            if (questionAnswer == correctAnswers[i]) {
+                counterAnswer++;
+                System.out.println("Правильно");
+            } else if (questionAnswer <= NUMBER_OF_QUESTIONS) {
+                System.out.println("Неправильно");
+            } else if (questionAnswer > NUMBER_OF_QUESTIONS) {
                 System.out.println("Неверный ввод");
+            }
         }
 
         //Считаю процент верных ответов пользователя после прохождения тестирования
-        percent = (counter*100) / NUMBER_OF_QUESTIONS;
-        System.out.println("Тест закончен! Набранное количество баллов - " + counter + ", " + "что составляет " + percent + "% от максимального количества баллов.");
+        percentAnswer = (counterAnswer*100) / NUMBER_OF_QUESTIONS;
+        System.out.println("Тест закончен! Набранное количество баллов - " + counterAnswer + ", " + "что составляет " + percentAnswer + "% от максимального количества баллов.");
     }
 }
