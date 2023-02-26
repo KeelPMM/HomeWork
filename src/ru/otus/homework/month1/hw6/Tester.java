@@ -17,12 +17,12 @@ public class Tester {
 
         Scanner scanner = new Scanner(System.in);
 
-        Vopros Vopros1 = new Vopros();
-        Otvet Otvet1 = new Otvet();
+        Vopros VoprosSerial[] = new Vopros[2];
+        Otvet OtvetSerial[] = new Otvet[2];
 
-        for (int i = 0; i < NUMBER_OF_QUESTIONS; i++) {
-            Vopros1.printQuestion();
-            Otvet1.printAnswer();
+        for (int i = 0; i < VoprosSerial.length; i++) {
+            VoprosSerial.printQuestion();
+            OtvetSerial.printAnswer();
 
             questionAnswer = scanner.nextInt();
         }
